@@ -2,8 +2,8 @@
 var request = require("request");
 var cheerio = require("cheerio");
 // Requiring our Comment and Article models
-var Comment = require("../models/Comment.js");
-var Article = require("../models/Article.js");
+var Comment = require("../models/Comment");
+var Article = require("../models/Article");
 
 module.exports = function (app) {
 
@@ -14,7 +14,7 @@ module.exports = function (app) {
 
     app.get("/scrape", function (req, res) {
         //use request dependecy to grab the body of the html
-        request("https://www.mmafighting.com/latest-news", function (error, response, html) {
+        request("https://www.mmafighting.com/", function (error, response, html) {
             //Save the body of the html into a variabl called $  within cheerio
             var $ = cheerio.load(html);
             // Now grab every a tag link within an article heading  and iterate through it

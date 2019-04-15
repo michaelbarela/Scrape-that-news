@@ -29,7 +29,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static("public"));
 
 
-var dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017";
+var dbURI = process.env.MONGODB_URI || "mongodb://localhost/admin";
 
 mongoose.connect(dbURI, {
     useNewUrlParser: true
@@ -48,7 +48,7 @@ db.once("open", function () {
 });
 
 // Require the routes in our controllers js file
-require("./controllers/articlesController.js")(app);
+require("./controllers/articlesController")(app);
 
 //Listen on PORT 8000 & notify us.
 app.listen(PORT, function () {
